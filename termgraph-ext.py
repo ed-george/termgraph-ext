@@ -62,7 +62,7 @@ def main():
     step = max / args['width']
     # display graph
     for i in range(m):
-        isMax = i == index
+        isMax = data[i] == data[index]
         print_blocks(i, labels[i], data[i], step, isMax)
 
     print()
