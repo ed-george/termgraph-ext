@@ -163,7 +163,7 @@ def read_data(filename):
     lines = 0
     for line in f:
         line = line.strip()
-        line += 1
+        lines += 1
         if verbose:
             print("R: " + line)
         if line:
