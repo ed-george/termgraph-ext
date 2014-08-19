@@ -95,7 +95,7 @@ def print_blocks(index, label, count, step, isMax):
     if args['parse']:
         parseDate(index)
     
-    print("")    
+    print()    
 
 def parseDate(i):
     if i > 0:
@@ -150,7 +150,6 @@ def init():
 
 
 def read_data(filename):
-    #TODO: add verbose flag
     print("------------------------------------")
     print("Reading data from", filename)
     print("------------------------------------\n")
@@ -159,8 +158,14 @@ def read_data(filename):
     data = []
 
     f = open(filename, "r")
+
+    verbose = args['verbose']
+    lines = 0
     for line in f:
         line = line.strip()
+        line += 1
+        if verbose:
+            print("R: " + line)
         if line:
             if not line.startswith('#'):
                 if line.find(",") > 0:
@@ -172,6 +177,12 @@ def read_data(filename):
                 data.append(float(data_point))
 
     f.close()
+
+    if verbose:
+        print("------------------------------------")
+        print ("Closed file - read %d lines" % lines)
+        print("------------------------------------\n")
+
     return labels, data
 
 
