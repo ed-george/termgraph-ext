@@ -118,6 +118,18 @@ def parseDate(i):
             termcolor.cprint(" (Avg: %.2f p/hr)" % avg, "yellow", end="")
         else:
             print(" (Avg: %.2f p/hr)" % avg, end="")
+
+        if(i == (len(data) - 1)):
+            first = datetime.strptime(labels[0], args['format'])
+            f_duration = curr - first
+            f_days, f_seconds = f_duration.days, f_duration.seconds
+            f_hours = f_days * 24 + f_seconds // 3600
+            f_avg = float((data[i] - data[0]) / f_hours)
+            if args['color']:
+                termcolor.cprint("\n\nOverall average of %.4f p/hr over %d hours" % (f_avg, f_hours), "yellow", end="")
+            else:
+                print("\n\nOverall average of %.4f p/hr over %d hours" % (f_avg, f_hours), end="")
+
     else:
         return
 
